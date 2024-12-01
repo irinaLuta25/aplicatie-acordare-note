@@ -8,12 +8,22 @@ const phaseModel=(sequelize,DataTypes)=>{
             id:{
                 primaryKey:true,
                 type:DataTypes.BIGINT,
-                autoincrement:true
+                autoIncrement:true
             },
             name: DataTypes.STRING,
             deadline: DataTypes.DATE,
             description: DataTypes.TEXT,
-            receiveGrade: DataTypes.FLOAT
+            receiveGrade: DataTypes.FLOAT,
+            idAssignment: {
+                type: DataTypes.BIGINT,
+                allowNull: false,
+                references: {
+                    model: 'assignment',
+                    key:"id"
+                },
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE'
+            }
         },
         {
             underscored:true,

@@ -8,7 +8,7 @@ const userModel=(sequelize,DataTypes)=>{
          id:{
             primaryKey:true,
             type:DataTypes.BIGINT,
-            autoincrement:true
+            autoIncrement:true
          },
          firstName:DataTypes.STRING,
          lastName:DataTypes.STRING,

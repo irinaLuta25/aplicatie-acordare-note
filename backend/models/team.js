@@ -8,9 +8,19 @@ const teamModel=(sequelize, DataTypes)=>{
             id:{
                 primaryKey:true,
                 type:DataTypes.BIGINT,
-                autoincrement:true
+                autoIncrement:true
             },
-            name: DataTypes.STRING
+            name: DataTypes.STRING,
+            idAssignment: {
+                type: DataTypes.BIGINT,
+                allowNull: false,
+                references: {
+                    model: 'assignment',
+                    key:"id"
+                },
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE'
+            }
         },
         {
             underscored:true,

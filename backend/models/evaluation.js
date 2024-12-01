@@ -8,9 +8,27 @@ const evaluationModel=(sequelize,DataTypes)=>{
          id:{
             primaryKey:true,
             type:DataTypes.BIGINT,
-            autoincrement:true
+            autoIncrement:true
          },
-         grade:DataTypes.FLOAT
+         grade:DataTypes.FLOAT,
+         userId: {
+            type: DataTypes.BIGINT,
+            allowNull: false,
+            references: {
+                model: 'user',
+                key: 'id'
+            },
+            onDelete: 'CASCADE'
+        },
+         teamId: {
+            type: DataTypes.BIGINT,
+            allowNull: false,
+            references: {
+                model: 'team',
+                key: 'id'
+            },
+            onDelete: 'CASCADE'
+        },
         },
         {
          underscored:true,

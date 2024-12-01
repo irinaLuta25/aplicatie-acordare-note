@@ -1,5 +1,5 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../config/db");
+// const { DataTypes } = require("sequelize");
+// const sequelize = require("../config/db");
 
 const subjectModel=(sequelize,DataTypes)=>{
     const subject=sequelize.define(
@@ -8,7 +8,7 @@ const subjectModel=(sequelize,DataTypes)=>{
             id:{
                 primaryKey:true,
                 type:DataTypes.BIGINT,
-                autoincrement:true
+                autoIncrement:true
             },
             name:DataTypes.STRING
         },
