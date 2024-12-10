@@ -1,3 +1,6 @@
+const { where } = require("sequelize");
+const { User } = require("../models");
+
 const UserAssignmentDb = require("../models").UserAssignment;
 
 const controller = {
@@ -66,6 +69,31 @@ const controller = {
                 res.status(200).send("S-a sters");
             }
         } catch(err) {
+            res.status(500).send(err.message);
+        }
+    },
+
+    getAllStudents: async(req,res)=>{
+        try{
+            const students=await UserAssignmentDb.findAndCountAll({
+               include:[{
+                association:'user',
+                required:true,
+                where:{role:true}
+               }]
+            });
+            res.status(200).send(students);
+            console.log(students);
+        }catch(err){
+            res.status(500).send(err.message);
+        }
+    },
+    getNumberOfTeams: async(req,res)=>{
+        try{
+            const studentsForAssignment=this.getAllStudents;
+            console.log(studentsForAssignment);
+            res.status(200).send(studentsForAssignment);
+        }catch(err){
             res.status(500).send(err.message);
         }
     }

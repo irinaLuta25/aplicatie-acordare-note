@@ -4,6 +4,9 @@ const router = express.Router();
 const userAssignmentController = require("../controllers").userAssignmentController;
 
 router.get('/getAll',userAssignmentController.getAll);
+router.get('/getAllStudents',userAssignmentController.getAllStudents);
+router.get('/getNumberOfTeams',userAssignmentController.getNumberOfTeams);
+
 router.get('/:id',userAssignmentController.getUserAssignmentBydId);
 router.post('/create',userAssignmentController.addUserAssignment);
 router.put('/update/:id',userAssignmentController.editUserAssignment);
