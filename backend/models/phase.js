@@ -13,7 +13,6 @@ const phaseModel=(sequelize,DataTypes)=>{
             name: DataTypes.STRING,
             deadline: DataTypes.DATE,
             description: DataTypes.TEXT,
-            receiveGrade: DataTypes.FLOAT,
             idAssignment: {
                 type: DataTypes.BIGINT,
                 allowNull: false,

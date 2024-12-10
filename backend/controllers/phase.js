@@ -6,7 +6,6 @@ const controller={
             name: req.body.name,
             deadline: req.body.deadline,
             description:req.body.description,
-            receiveGrade:req.body.receiveGrade,
             idAssignment:req.body.idAssignment
         };
         try{
@@ -40,7 +39,6 @@ const controller={
             name: req.body.name,
             deadline: req.body.deadline,
             description:req.body.description,
-            receiveGrade:req.body.receiveGrade
         };
         try{
             const phase=await PhaseDb.findByPk(id);

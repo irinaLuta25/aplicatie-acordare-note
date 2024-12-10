@@ -4,7 +4,6 @@ const controller = {
   addTeam: async (req, res) => {
     const team = {
       name: req.body.name,
-      idAssignment:req.body.idAssignment
     };
 
     try {

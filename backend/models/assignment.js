@@ -1,7 +1,6 @@
 const {DataTypes}=require('sequelize');
 const sequelize=require('../config/db');
 
-const subjectModel=require("./subject");
 
 
 const assignmentModel=(sequelize,DataTypes) => {
@@ -13,19 +12,11 @@ const assignmentModel=(sequelize,DataTypes) => {
                 type:DataTypes.BIGINT,
                 autoIncrement:true
             },
+            subject:DataTypes.STRING,
             title:DataTypes.STRING,
             description:DataTypes.TEXT,
             enrollmentDeadline:DataTypes.DATE,
-            idSubject: {
-                type: DataTypes.BIGINT,
-                allowNull: false,
-                references: {
-                    model: 'subject',
-                    key: 'id'
-                },
-                // onDelete: 'CASCADE',
-                // onUpdate: 'CASCADE'
-            }
+
         },
         {
          underscored:true,

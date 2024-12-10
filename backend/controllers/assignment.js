@@ -3,7 +3,7 @@ const AssignmentDb = require("../models").Assignment;
 const controller={
     addAssignment: async (req,res)=>{
         const assignment={
-            idSubject:req.body.idSubject,
+            subject:req.body.subject,
             title:req.body.title,
             description:req.body.description,
             enrollmentDeadline:req.body.enrollmentDeadline
@@ -40,7 +40,7 @@ const controller={
     editAssignment: async (req,res)=>{
         const id = req.params.id;
         const updatedAssignment ={
-            idSubject:req.body.idSubject,
+            subject:req.body.subject,
             title:req.body.title,
             description:req.body.description,
             enrollment_deadline:req.body.enrollment_deadline
