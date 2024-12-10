@@ -5,7 +5,8 @@ const controller = {
         const evaluation = {
             grade:req.body.grade,
             userId:req.body.userId,
-            teamId:req.body.teamId
+            teamId:req.body.teamId,
+            role:req.body.role
         }
 
         try {
@@ -39,7 +40,10 @@ const controller = {
         const id = req.params.id;
 
         const updatedEvaluation = {
-            grade:req.body.grade
+            grade:req.body.grade,
+            userId:req.body.userId,
+            teamId:req.body.teamId,
+            role:req.body.role
         }
 
         try {

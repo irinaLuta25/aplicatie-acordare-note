@@ -58,7 +58,7 @@ const controller={
         try{
             const phase=await PhaseDb.findByPk(id);
             if(phase){
-                await phase.delete();
+                await phase.destroy();
                 res.status(200).send("S-a sters yeyeye");
             }
         }catch(err){

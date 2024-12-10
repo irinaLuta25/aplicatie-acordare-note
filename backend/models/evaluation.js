@@ -29,6 +29,9 @@ const evaluationModel=(sequelize,DataTypes)=>{
             },
             onDelete: 'CASCADE'
         },
+        role:{
+            type: DataTypes.STRING
+        },
         },
         {
          underscored:true,

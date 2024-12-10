@@ -17,7 +17,7 @@ const controller={
         }
     },
 
-    getAll: async (res,req)=>{
+    getAll: async (req,res)=>{
         try{
             const assignments= await AssignmentDb.findAll();
             res.status(200).send(assignments);
@@ -30,23 +30,24 @@ const controller={
     getAssignmentById: async(req,res)=>{
         const id = req.params.id;
         try{
-            const assignment = await AssignmentDb.findByPK(id);
+            const assignment = await AssignmentDb.findByPk(id);
             res.status(200).send(assignment);
         }catch(err){
             res.status(500).send(err.message);
         }
     },
 
-    editAssignment: async (res,req)=>{
+    editAssignment: async (req,res)=>{
         const id = req.params.id;
         const updatedAssignment ={
+            idSubject:req.body.idSubject,
             title:req.body.title,
             description:req.body.description,
             enrollment_deadline:req.body.enrollment_deadline
         };
 
         try{
-            const assignment = await AssignmentDb.findByPK(id);
+            const assignment = await AssignmentDb.findByPk(id);
             if(assignment){
                 await assignment.update(updatedAssignment);
                 res.status(200).send(assignment);
@@ -57,10 +58,10 @@ const controller={
         }
     },
 
-    deleteAssignment: async (req,res)=>{
+    deleteAssignment: async(req,res)=>{
         const id = req.params.id;
         try{
-            const assignment = await AssignmentDb.findByPK(id);
+            const assignment = await AssignmentDb.findByPk(id);
             if(assignment){
                 await assignment.destroy();
                 res.status(200).send("S-a sters yey");
