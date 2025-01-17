@@ -73,28 +73,23 @@ const controller = {
         }
     },
 
-    getAllStudents: async(req,res)=>{
+    getAllStudentsByAssignmentId: async(req)=>{
+        const id=req.body.assignmentId;
         try{
             const students=await UserAssignmentDb.findAndCountAll({
-               include:[{
-                association:'user',
-                required:true,
-                where:{role:true}
+                where:{
+                    assignmentId:id
+                },
+                include:[{
+                    association:'user',
+                    required:true,
+                    where:{role:true}
                }]
             });
-            res.status(200).send(students);
+            return students;
             console.log(students);
         }catch(err){
-            res.status(500).send(err.message);
-        }
-    },
-    getNumberOfTeams: async(req,res)=>{
-        try{
-            const studentsForAssignment=this.getAllStudents;
-            console.log(studentsForAssignment);
-            res.status(200).send(studentsForAssignment);
-        }catch(err){
-            res.status(500).send(err.message);
+           throw err;
         }
     }
 

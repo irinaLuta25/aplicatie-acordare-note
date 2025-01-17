@@ -9,17 +9,20 @@ const controller = {
     try {
       const newTeam = await TeamDb.create(team);
       res.status(200).send(newTeam);
+      return newTeam;
     } catch (err) {
       res.status(500).send(err.message);
     }
   },
 
-  getAll: async (req, res) => {
+  getAll: async () => {
     try {
       const teams = await TeamDb.findAll();
-      res.status(200).send(teams);
+      //res.status(200).send(teams);
+      return teams;
     } catch (err) {
-      res.status(500).send(err.message);
+      //res.status(500).send(err.message);
+      throw err;
     }
   },
 

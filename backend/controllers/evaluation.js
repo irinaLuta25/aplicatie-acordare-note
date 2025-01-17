@@ -12,6 +12,7 @@ const controller = {
         try {
             const newEvaluation = await EvaluationDb.create(evaluation);
             res.status(200).send(newEvaluation);
+            return newEvaluation;
         } catch(err) {
             res.status(500).send(err.message);
         }
@@ -20,6 +21,7 @@ const controller = {
     getAll: async(req,res) => {
         try {
         const evaluations = await EvaluationDb.findAll();
+        return evaluations;
         res.status(200).send(evaluations);
         } catch(err) {
             res.status(500).send(err.message);
