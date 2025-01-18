@@ -1,4 +1,5 @@
 const express=require('express');
+const multer=require("multer");
 
 const app=express();
 const port=4848;
@@ -19,6 +20,22 @@ app.get('/reset', async(req,res)=>{
         res.status(500).send({ message: 'Db reset error', err: err.message });
     }
 })
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./uploads");
+    },
+    filename: function (req, file, cb) {
+      cb(null,file.originalname);
+    },
+  });
+
+const upload=multer({storage});
+
+app.post("/api/upload",upload.single("file"),function (req, res, next) {
+    console.log(req.file);
+    res.send({ message: "Project uploaded successfully" });
+  });
 
 app.listen(port,()=>{ 
     console.log(`Server is running on ${port}`);
