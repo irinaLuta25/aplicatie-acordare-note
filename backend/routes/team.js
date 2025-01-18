@@ -6,6 +6,7 @@ const teamController=require("../controllers").teamController;
 
 router.get("/getAll",teamController.getAll);
 router.get("/:id",teamController.getTeamById);
+router.get('/getAllTeamsByPhaseId/:phaseId', teamController.getAllTeamsByPhaseId);
 router.post("/create",teamController.addTeam);
 router.put("/update/:id",teamController.editTeam);
 router.delete("/delete/:id",teamController.deleteTeam);

@@ -11,9 +11,9 @@ app.use("/api",router);
 
 app.get('/reset', async(req,res)=>{
     try {
-        await db.query('SET FOREIGN_KEY_CHECKS = 0'); // Dezactivează constrângerile
-        await db.sync({ force: true }); // Resetează tabelele
-        await db.query('SET FOREIGN_KEY_CHECKS = 1'); // Reactivează constrângerile
+        await db.query('SET FOREIGN_KEY_CHECKS = 0'); 
+        await db.sync({ force: true }); 
+        await db.query('SET FOREIGN_KEY_CHECKS = 1'); 
         res.status(200).send('Db reset complete!');
     } catch (err) {
         res.status(500).send({ message: 'Db reset error', err: err.message });

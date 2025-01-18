@@ -22,9 +22,17 @@ const evaluationModel=(sequelize,DataTypes)=>{
         },
          teamId: {
             type: DataTypes.BIGINT,
-            allowNull: false,
             references: {
                 model: 'team',
+                key: 'id'
+            },
+            onDelete: 'CASCADE'
+        },
+        phaseId:{
+            type: DataTypes.BIGINT,
+            allowNull: false,
+            references: {
+                model: 'phase',
                 key: 'id'
             },
             onDelete: 'CASCADE'

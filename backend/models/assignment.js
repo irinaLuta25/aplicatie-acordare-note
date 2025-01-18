@@ -15,8 +15,6 @@ const assignmentModel=(sequelize,DataTypes) => {
             subject:DataTypes.STRING,
             title:DataTypes.STRING,
             description:DataTypes.TEXT,
-            enrollmentDeadline:DataTypes.DATE,
-
         },
         {
          underscored:true,

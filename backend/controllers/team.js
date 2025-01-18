@@ -1,4 +1,5 @@
 const TeamDb = require("../models").Team;
+const EvaluationDb=require("../models").Evaluation;
 
 const controller = {
   addTeam: async (req, res) => {
@@ -8,20 +9,20 @@ const controller = {
 
     try {
       const newTeam = await TeamDb.create(team);
-      res.status(200).send(newTeam);
-      return newTeam;
+      res.status(200).json(newTeam);
+
     } catch (err) {
       res.status(500).send(err.message);
     }
   },
 
-  getAll: async () => {
+  getAll: async (req,res) => {
     try {
       const teams = await TeamDb.findAll();
-      //res.status(200).send(teams);
-      return teams;
+      res.status(200).send(teams);
+      //return teams;
     } catch (err) {
-      //res.status(500).send(err.message);
+      res.status(500).send(err.message);
       throw err;
     }
   },
@@ -66,6 +67,28 @@ const controller = {
       res.status(500).send(err.message);
     }
   },
+  
+  getAllTeamsByPhaseId: async (req,res) => {
+    const phaseIdT = req.params.phaseId;
+
+    if (!phaseIdT) {
+        throw new Error("No phase ID provided.");
+    }
+
+    try {
+        const teams = await TeamDb.findAll({
+            include: [{
+                model: EvaluationDb, 
+                required: true,
+                where: { phaseId:phaseIdT }
+            }],
+        });
+        res.status(200).send(teams);
+        return teams;
+    } catch (err) {
+        res.status(500).send(err);
+    }
+},
 };
 
 module.exports=controller;

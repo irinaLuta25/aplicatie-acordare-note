@@ -6,7 +6,6 @@ const controller={
             subject:req.body.subject,
             title:req.body.title,
             description:req.body.description,
-            enrollmentDeadline:req.body.enrollmentDeadline
         };
 
         try{
@@ -43,7 +42,6 @@ const controller={
             subject:req.body.subject,
             title:req.body.title,
             description:req.body.description,
-            enrollment_deadline:req.body.enrollment_deadline
         };
 
         try{

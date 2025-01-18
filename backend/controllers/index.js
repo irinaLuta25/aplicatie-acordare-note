@@ -3,7 +3,6 @@ const evaluationController = require("./evaluation");
 const teamController = require("./team");
 const phaseController=require("./phase");
 const userController=require("./user");
-const userAssignmentController=require("./userAssignment");
 const serviceController=require("./service");
 
 module.exports={
@@ -12,7 +11,6 @@ module.exports={
     teamController,
     phaseController,
     userController,
-    userAssignmentController,
     serviceController
 };
 

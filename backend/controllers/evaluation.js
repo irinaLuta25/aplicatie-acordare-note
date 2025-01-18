@@ -1,4 +1,6 @@
 const EvaluationDb = require("../models").Evaluation;
+const TeamDb=require("../models").Team;
+
 
 const controller = {
     addEvaluation: async(req,res) => {
@@ -6,6 +8,7 @@ const controller = {
             grade:req.body.grade,
             userId:req.body.userId,
             teamId:req.body.teamId,
+            phaseId:req.body.phaseId,
             role:req.body.role
         }
 
@@ -21,8 +24,8 @@ const controller = {
     getAll: async(req,res) => {
         try {
         const evaluations = await EvaluationDb.findAll();
-        return evaluations;
         res.status(200).send(evaluations);
+        return evaluations;
         } catch(err) {
             res.status(500).send(err.message);
         }
@@ -45,6 +48,7 @@ const controller = {
             grade:req.body.grade,
             userId:req.body.userId,
             teamId:req.body.teamId,
+            phaseId:req.body.phaseId,
             role:req.body.role
         }
 
@@ -74,7 +78,52 @@ const controller = {
         } catch(err) {
             res.status(500).send(err.message);
         }
-    }
+    },
+    getAllStudentsByPhaseId: async (req,res) => {
+        const { phaseId } = req.params;
+    
+        if (!phaseId) {
+            throw new Error("No phase ID provided.");
+        }
+    
+        try {
+            const students = await EvaluationDb.findAndCountAll({
+                where: { phaseId },
+                include: [{
+                    association: 'user',
+                    required: true,
+                    where: { role: true },
+                }],
+            });
+            res.status(200).send(students)
+            return students;
+        } catch (err) {
+            res.status(500).send(err)
+        }
+    },
+    getAllTeachersByPhaseId: async (req,res) => {
+        const { phaseId } = req.params;
+    
+        if (!phaseId) {
+            throw new Error("No phase ID provided.");
+        }
+    
+        try {
+            const teachers = await EvaluationDb.findAndCountAll({
+                where: { phaseId },
+                include: [{
+                    association: 'user',
+                    required: true,
+                    where: { role: false },
+                }],
+            });
+            res.status(200).send(teachers)
+            return teachers;
+        } catch (err) {
+            res.status(500).send(err)
+        }
+    },
+   
 
 };
 

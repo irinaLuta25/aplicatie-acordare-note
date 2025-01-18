@@ -29,6 +29,7 @@ const controller={
         try{
             const phase=await PhaseDb.findByPk(id);
             res.status(200).send(phase);
+            return phase;
         }catch(err){
             res.status(500).send(err.message);
         }
