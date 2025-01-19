@@ -4,19 +4,19 @@ import "./Assignments.css";
 
 function Assignments() {
   const assignments = [
-    { title: "Object oriented programming"},
-    { title: "Lorem lorem lorem lorem loremlorem lorem lorem lorem"},
-    { title: "Fundamentals of database systems"},
-    { title: "Object oriented programming"},
-    { title: "Fundamentals of database systems"},
+    {id:1, title: "Object oriented programming"},
+    {id:2, title: "Lorem lorem lorem lorem loremlorem lorem lorem lorem"},
+    {id:3, title: "Fundamentals of database systems"},
+    {id:4, title: "Object oriented programming"},
+    {id:5, title: "Fundamentals of database systems"},
   ];
 
   return (
     <div className="assignments">
       <h2>Assignments</h2>
       <div className="assignment-grid">
-        {assignments.map((assignment, index) => (
-          <AssignmentCard key={index} title={assignment.title}/>
+        {assignments.map((assignment) => (
+          <AssignmentCard key={assignment.id} title={assignment.title}/>
         ))}
       </div>
     </div>
