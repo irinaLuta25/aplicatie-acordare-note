@@ -31,7 +31,7 @@ passport.use(
         })
           .then((currentUser) => {
             if (!currentUser) {
-              // Creăm utilizatorul nou
+              // Cream utilizatorul nou
               User.create({
                 firstName: email.name.givenName,
                 lastName: email.name.familyName,
@@ -46,12 +46,12 @@ passport.use(
                   return done(err, null);
                 });
             } else {
-              console.log("Utilizator găsit:", currentUser);
+              console.log("Utilizator gasit:", currentUser);
               return done(null, currentUser);
             }
           })
           .catch((err) => {
-            console.error("Eroare la căutarea utilizatorului:", err);
+            console.error("Eroare la cautarea utilizatorului:", err);
             return done(err, null);
           });
       }
