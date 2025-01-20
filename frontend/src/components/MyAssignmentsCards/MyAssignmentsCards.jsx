@@ -1,26 +1,25 @@
 import React from "react";
-import AssignmentCard from "../AssignmentCard/AssignmentCard";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import HeaderProfile from "../../components/HeaderProfile/HeaderProfile";
+import AssignmentCard from "../../components/AssignmentCard/AssignmentCard";
 import "./MyAssignmentsCards.css";
 
-function MyAssignmentsCards() {
-  const assignments = [
-    {id:1, title: "Object oriented programming"},
-    {id:2, title: "Lorem lorem lorem lorem loremlorem lorem lorem lorem"},
-    {id:3, title: "Fundamentals of database systems"},
-    {id:4, title: "Object oriented programming"},
-    {id:5, title: "Fundamentals of database systems"},
-  ];
-
+function MyAssignments({ assignment }) {
   return (
-    <div className="assignments">
-      <h2>My Assignments</h2>
-      <div className="assignment-grid">
-        {assignments.map((assignment) => (
-          <AssignmentCard key={assignment.id} title={assignment.title}/>
-        ))}
+    <div className="courses">
+      <div className="section2">
+        <Sidebar />
+      </div>
+      <div className="main">
+        <HeaderProfile />
+        {assignment ? (
+          <AssignmentCard key={assignment.assignment_id} assignment={assignment} />
+        ) : (
+          <p>No assignments enrolled yet.</p>
+        )}
       </div>
     </div>
   );
 }
 
-export default MyAssignmentsCards;
+export default MyAssignments;

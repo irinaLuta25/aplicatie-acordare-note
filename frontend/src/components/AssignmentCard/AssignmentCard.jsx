@@ -3,16 +3,17 @@ import "./AssignmentCard.css";
 import image from '../../assets/opening_book.png'
 import {useNavigate} from "react-router-dom"
 
-function AssignmentCard({title,id}) {
+
+function AssignmentCard({assignment}) {
   const navigate=useNavigate();
 
   const handlerClick=()=>{
-    navigate(`/assignment/${id}`,{state:{title}})
+    navigate(`/assignment/${assignment.assignment_id}`,{state:{assignment}})
   }
   return (
     <div className="assignment-card">
       <img src={image} className="assignment-icon"/>
-      <h3>{title}</h3>
+      <h3>{assignment.title}</h3>
       <button onClick={handlerClick}>View</button>
     </div>
   );

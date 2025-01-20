@@ -3,12 +3,19 @@ import "./PhaseCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 
-function PhaseCard() {
+function PhaseCard({phase}) {
+  const formattedDeadline = phase.deadline instanceof Date 
+  ? phase.deadline.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
+  : "Invalid Date";
   return (
     <div className="phase-card">
-      <h3>NAME PHASE</h3>
-      <p><strong>Deadline:</strong> 01.01.2000</p>
-      <p>Fa un proiect in care sa...</p>
+      <h3>{phase.name}</h3>
+      <p><strong>Deadline:</strong> {formattedDeadline}</p>
+      <p>{phase.description}</p>
       
       <div className="upload-section">
         <div className="upload-box">

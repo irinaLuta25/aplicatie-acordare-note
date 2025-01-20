@@ -1,21 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import WelcomeCard from "../../components/WelcomeCard/WelcomeCard";
-import MyAssignmentsCards from "../../components/MyAssignmentsCards/MyAssignmentsCards";
-import Assigments from "../../components/Assignments/Assignments";
 import HeaderProfile from "../../components/HeaderProfile/HeaderProfile";
+import AssignmentCard from "../../components/AssignmentCard/AssignmentCard";
+import { useLocation } from "react-router-dom";
 import "./MyAssignments.css";
 
-
 function MyAssignments() {
+  const location = useLocation();
+  const [currentAssignment, setCurrentAssignment] = useState(null);
+
+  useEffect(() => {
+    if (location.state?.assignment) {
+      setCurrentAssignment(location.state.assignment);
+    }
+  }, [location.state]);
+
   return (
     <div className="courses">
       <div className="section2">
-      <Sidebar />
+        <Sidebar />
       </div>
       <div className="main">
-        <HeaderProfile/>
-        <Assigments />
+        <HeaderProfile />
+        {currentAssignment ? (
+          <AssignmentCard
+            key={currentAssignment.assignment_id}
+            assignment={currentAssignment}
+          />
+        ) : (
+          <p>Nu există assignment înscris.</p> 
+        )}
       </div>
     </div>
   );
