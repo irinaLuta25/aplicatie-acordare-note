@@ -8,6 +8,7 @@ import PhaseEvaluation from "./pages/PhaseEvaluation/PhaseEvaluation";
 import Login from "./pages/Login/Login";
 import TeacherMyAssignments from "./pages/TeacherMyAssignments/TeacherMyAssignments";
 import CreateAssignment from "./pages/CreateAssignment/CreateAssignment"
+import SeePhasesAndGrades from "./pages/SeePhasesAndGrades/SeePhasesAndGrades"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/evaluation/:id" element={<PhaseEvaluation />} />
       <Route path="/teacherMyAssignments" element={<TeacherMyAssignments />} />
       <Route path="/createAssignment" element={<CreateAssignment />} />
+      <Route path="/seePhases" element={<SeePhasesAndGrades />} />
     </Routes>
   );
 }
