@@ -1,0 +1,33 @@
+
+.courses {
+    display: flex;
+    height: 100vh;
+    justify-content: space-between;
+  }
+  
+  .section2 {
+    width: 15vw; 
+  }
+  
+  
+  .main-evaluation {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 1.3rem;
+    width: 80%;
+  }
+
+  .evaluations{
+    margin-top: 5rem;
+    padding: 0 3rem;
+  }
+
+  .evaluation-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 2rem; 
+    align-items: stretch;
+    padding-bottom: 5rem;
+  }
+  

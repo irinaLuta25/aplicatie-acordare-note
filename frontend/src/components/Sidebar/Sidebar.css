@@ -65,7 +65,7 @@
     color: white;
 }
 
-#onPage{
+.sidebar-link.active {
   font-weight: bold;
   color: #f1c40f; 
 }
