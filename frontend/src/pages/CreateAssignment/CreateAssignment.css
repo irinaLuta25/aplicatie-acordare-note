@@ -20,6 +20,7 @@
 
 .main-container {
     background: radial-gradient(circle, rgba(229,213,245,1) 0%, rgba(202,122,235,1) 100%);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center; 
@@ -27,13 +28,14 @@
     padding: 4rem 2rem;
     box-sizing: border-box;
     position: relative;
-    height: 100vh;
 }
 
 .assignment-container{
     background: rgba(255, 255, 255, 0.95);
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap:1rem;
     padding: 2.5rem;
     border-radius: 15px;
@@ -50,13 +52,44 @@
     margin-bottom: 1rem;
 }
 
-.assignment-container label{
-    font-size: 1rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 1rem;
+
+.inputs-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 3rem 0;
 }
 
-.assignment-container input{
+.inputs-container span {
+    display: flex;
+    align-items: center;
+    gap: 1rem; 
+    width: 100%;
+}
 
+.assignment-container label {
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: left;
+    width: 12rem;
+}
+
+.assignment-container input {
+    padding: 0.3rem;
+    width: 100%;
+    max-width: 20rem;
+}
+
+.btn-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+button:disabled {
+    opacity: 0.5; 
+    cursor: not-allowed;
+    transition: all 0.5s ease-in-out;
 }
