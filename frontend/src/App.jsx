@@ -6,6 +6,8 @@ import EvaluationPhases from "./pages/EvaluationPhases/EvaluationPhases";
 import AssignmentPhases from "./pages/AssignmentPhases/AssignmentPhases";
 import PhaseEvaluation from "./pages/PhaseEvaluation/PhaseEvaluation";
 import Login from "./pages/Login/Login";
+import TeacherMyAssignments from "./pages/TeacherMyAssignments/TeacherMyAssignments";
+import CreateAssignment from "./pages/CreateAssignment/CreateAssignment"
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
       <Route path="/evaluationPhases" element={<EvaluationPhases />} />
       <Route path="/assignment/:id" element={<AssignmentPhases />} />
       <Route path="/evaluation/:id" element={<PhaseEvaluation />} />
+      <Route path="/teacherMyAssignments" element={<TeacherMyAssignments />} />
+      <Route path="/createAssignment" element={<CreateAssignment />} />
     </Routes>
   );
 }
