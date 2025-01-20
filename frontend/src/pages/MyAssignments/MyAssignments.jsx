@@ -13,7 +13,7 @@ function MyAssignments() {
     if (location.state?.assignment) {
       setCurrentAssignment(location.state.assignment);
     }
-  }, [location.state]);
+  }, []);
 
   return (
     <div className="courses">
@@ -28,7 +28,7 @@ function MyAssignments() {
             assignment={currentAssignment}
           />
         ) : (
-          <p>Nu există assignment înscris.</p> 
+          <p>Nu există assignment înscris.</p>
         )}
       </div>
     </div>
