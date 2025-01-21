@@ -19,7 +19,7 @@ app.use(express.json());
 
 app.use(
   session({
-    secret: ["CACA"], 
+    secret: [process.env.COOKIE_KEY], 
     resave: false, 
     saveUninitialized: false, 
     cookie: {
