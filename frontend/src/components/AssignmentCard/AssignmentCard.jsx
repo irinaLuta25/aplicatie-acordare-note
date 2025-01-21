@@ -10,7 +10,7 @@ function AssignmentCard({assignment}) {
   const [newAssignment, setNewAssignment]=useState();
 
   const handlerClick=()=>{
-    navigate(`/assignment/${assignment.assignment_id}`,{state:{assignment}})
+    navigate(`/assignment/${assignment.id}`,{state:{assignment}})
     setNewAssignment(assignment);
   }
   return (

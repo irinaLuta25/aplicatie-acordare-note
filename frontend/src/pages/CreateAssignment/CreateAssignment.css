@@ -88,8 +88,3 @@
     flex-direction: column;
 }
 
-button:disabled {
-    opacity: 0.5; 
-    cursor: not-allowed;
-    transition: all 0.5s ease-in-out;
-}

@@ -1,7 +1,7 @@
 
 .courses {
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
     justify-content: space-between;
   }
   
@@ -10,11 +10,12 @@
   }
   
   
-  .main {
+  .main-my-assignments {
     display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 1.3rem;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding:8rem 1.3rem 1.3rem 1.3rem;
     width: 80%;
   }
   

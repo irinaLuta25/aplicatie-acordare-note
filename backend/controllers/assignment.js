@@ -1,8 +1,8 @@
 const { where } = require("sequelize");
-const PhaseDB=require("../models").Phase;
-const TeamDB=require("../models").Team;
-const EvaluationDB=require("../models").Evaluation;
-const UserDB=require("../models").User;
+const PhaseDB = require("../models").Phase;
+const TeamDB = require("../models").Team;
+const EvaluationDB = require("../models").Evaluation;
+const UserDB = require("../models").User;
 
 
 const AssignmentDb = require("../models").Assignment;
@@ -78,33 +78,70 @@ const controller = {
     },
     getAllEvaluationsByAssignments: async (req, res) => {
         try {
-        const assignments = await AssignmentDb.findAll({
-            include: [{
-                model: PhaseDB,
-                required: true,
+            const assignments = await AssignmentDb.findAll({
                 include: [{
-                    model: EvaluationDB,
+                    model: PhaseDB,
                     required: true,
-                    where: { role: "JURY" },
                     include: [{
-                        model: UserDB,
+                        model: EvaluationDB,
                         required: true,
-                        where: { role: true },
-                    },
-                    {
-                        model: TeamDB,
-                        required: true,
+                        where: { role: "JURY" },
+                        include: [{
+                            model: UserDB,
+                            required: true,
+                            where: { role: true },
+                        },
+                        {
+                            model: TeamDB,
+                            required: true,
+                        }],
                     }],
                 }],
-            }],
-        });
-        res.status(200).send(assignments);
-    }catch(err){
-        res.status(500).send(err.message);
-        
-    }
-}
+            });
+            res.status(200).send(assignments);
+        } catch (err) {
+            res.status(500).send(err.message);
 
+        }
+    },
+
+    getAllAssignmentsByPhases: async (req, res) => {
+        try {
+            const assignments = await AssignmentDb.findAll({
+                include: [{
+                    model: PhaseDB,
+                    required: true,
+                    order:["id", "ASC"]
+                }],
+            });
+            res.status(200).send(assignments);
+        } catch (err) {
+            res.status(500).send(err.message);
+
+        }
+
+    },
+
+    getAllAssignmentsByUserId: async(req,res)=>{
+        let id=req.params.id;
+        try {
+            const assignments = await AssignmentDb.findAll({
+                include: [{
+                    model: PhaseDB,
+                    required: true,
+                    order:["id", "ASC"],
+                    include:[{
+                        model:EvaluationDB,
+                        required: true,
+                        where:{userId:id}
+                    }]
+                }],
+            });
+            res.status(200).send(assignments);
+        } catch (err) {
+            res.status(500).send(err.message);
+        }
+    }
 };
 
 module.exports = controller;

@@ -12,7 +12,7 @@ function Courses() {
       <div className="section2">
       <Sidebar />
       </div>
-      <div className="main">
+      <div className="main-courses">
         <HeaderProfile/>
         <WelcomeCard />
         <Assignments />

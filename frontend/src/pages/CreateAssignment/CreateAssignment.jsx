@@ -2,13 +2,27 @@ import React, { useState } from "react";
 import "./CreateAssignment.css";
 import AddPhase from "../../components/AddPhase/AddPhase";
 import { useNavigate } from "react-router-dom";
+import { createAssignment, createPhase } from "../../API/Api";
+
 
 function CreateAssignment() {
     const [subject, setSubject] = useState("");
-    const[id,setId]=useState();
-    const [assignment, setAssignment] = useState("");
+    const [id,setId]=useState();
+    const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [deadline, setDeadline] = useState("");
+    const [assignment,setAssignment]=useState({
+        subject:subject,
+        title:title,
+        description:description,
+    });
+
+    const [dummy,setDummy]=useState({
+        name:"Inscriere",
+        deadline:deadline,
+        description:"",
+        idAssignment: assignment.id
+    });
 
     const [components, setComponents] = useState([]);
     const [isClicked, setIsClicked] = useState(false);
@@ -23,7 +37,7 @@ function CreateAssignment() {
 
     const isFormValid = () => {
         return subject.trim() !== "" &&
-               assignment.trim() !== "" &&
+               title.trim() !== "" &&
                description.trim() !== "" &&
                deadline.trim() !== "";
     };
@@ -42,7 +56,7 @@ function CreateAssignment() {
         if (isFormValid() && areAllPhasesValid()) {
             alert("Assignment submitted successfully!");
 
-            navigate(`/teacherMyAssignments`,{state: {assignment,subject}})
+            navigate(`/teacherMyAssignments`,{state: {title,subject}})
         } else {
             alert("Please complete all fields before submitting.");
         }
@@ -68,12 +82,12 @@ function CreateAssignment() {
                         />
                     </span>
                     <span>
-                        <label htmlFor="assignment">Assignment </label>
+                        <label htmlFor="title">Title </label>
                         <input 
-                            name="assignment" 
-                            id="assignment" 
-                            value={assignment}
-                            onChange={(e) => setAssignment(e.target.value)}
+                            name="title" 
+                            id="title" 
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
                         />
                     </span>
                     <span>
@@ -98,7 +112,7 @@ function CreateAssignment() {
                 </div>
 
                 <button className="back-button" onClick={handler}>
-                    Adauga faza
+                    Add Phase
                 </button>
 
                 <div className="btn-container">

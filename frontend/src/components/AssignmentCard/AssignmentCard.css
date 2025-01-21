@@ -9,7 +9,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
+  padding: 2rem 10rem;
   min-height: 18vh; 
 }
 

@@ -20,7 +20,7 @@ const { AsyncQueueError } = require("sequelize");
 
 app.use(
   cors({
-    origin: "http://localhost:3000/",
+    origin: "http://localhost:3000",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
     allowedHeaders: [
       "Content-Type",
