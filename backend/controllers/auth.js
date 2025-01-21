@@ -15,8 +15,8 @@ passport.deserializeUser(async (id, done) => {
 passport.use(
     new GoogleStrategy(
       {
-        clientID: process.env.CLIENT_ID,
-        clientSecret: process.env.CLIENT_SECRET,
+        clientID: "23568952834-2hluckol4n2rhf0sqhgv76j8cevank1o.apps.googleusercontent.com",
+        clientSecret: "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",
         callbackURL: "http://localhost:4848/api/auth/google/redirect",
       },
       (accessToken, refreshToken, email, done) => {

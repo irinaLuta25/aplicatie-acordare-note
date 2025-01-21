@@ -5,6 +5,7 @@ const router = express.Router();
 const assignmentController = require("../controllers").assignmentController;
 const auth=require("../middlewares/index");
 
+router.get('/getAllEvaluationsByAssignments',auth.isAuthenticated,assignmentController.getAllEvaluationsByAssignments);
 router.get('/getAll',auth.isAuthenticated,assignmentController.getAll);
 router.get('/:id',auth.isAuthenticated,assignmentController.getAssignmentById);
 router.post('/create',auth.isAuthenticated,assignmentController.addAssignment);
