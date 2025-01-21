@@ -8,6 +8,8 @@ const session = require("express-session");
 const passport = require("passport");
 const { isAuthenticated } = require("./middlewares");
 require("./controllers/auth");
+const cors = require("cors");
+
 
 const app = express();
 const port = 4848;
@@ -15,6 +17,23 @@ const { db } = require("./models");
 
 const router = require("./routes");
 const { AsyncQueueError } = require("sequelize");
+
+app.use(
+  cors({
+    origin: "http://localhost:3000/",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "Access-Control-Allow-Methods",
+      "Access-Control-Allow-Origin",
+      "Access-Control-Request-Headers",
+    ],
+    credentials: true,
+    enablePreflight: true,
+  })
+);
+
 app.use(express.json());
 
 app.use(
@@ -67,7 +86,12 @@ app.post("/api/upload", upload.single("file"), function (req, res, next) {
 });
 
 app.get("/secret", isAuthenticated, (req, res) => {
-  res.status(200).send({ message: "Esti autorizat!" });
+  // res.status(200).send({ message: "Esti autorizat!" });
+  // const user = req.user;
+
+  // const expires = new Date(Date.now() + 900000) 
+  //   res.cookie('user', JSON.stringify(user), { expires });
+    res.redirect(302, "http://localhost:3000")
 });
 
 app.use("/*", (req, res) => {

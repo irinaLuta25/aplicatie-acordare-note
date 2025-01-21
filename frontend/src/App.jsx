@@ -7,23 +7,45 @@ import AssignmentPhases from "./pages/AssignmentPhases/AssignmentPhases";
 import PhaseEvaluation from "./pages/PhaseEvaluation/PhaseEvaluation";
 import Login from "./pages/Login/Login";
 import TeacherMyAssignments from "./pages/TeacherMyAssignments/TeacherMyAssignments";
-import CreateAssignment from "./pages/CreateAssignment/CreateAssignment"
-import SeePhasesAndGrades from "./pages/SeePhasesAndGrades/SeePhasesAndGrades"
+import CreateAssignment from "./pages/CreateAssignment/CreateAssignment";
+import SeePhasesAndGrades from "./pages/SeePhasesAndGrades/SeePhasesAndGrades";
+import Cookies from "universal-cookie";
+import MainTeacher from "./MainTeacher";
+import MainStudent from "./MainStudent";
+
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:4848/api/";
+axios.defaults.withCredentials = true; //
 
 function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<Courses />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/myAssignments" element={<MyAssignments />} />
-      <Route path="/evaluationPhases" element={<EvaluationPhases />} />
-      <Route path="/assignment/:id" element={<AssignmentPhases />} />
-      <Route path="/evaluation/:id" element={<PhaseEvaluation />} />
-      <Route path="/teacherMyAssignments" element={<TeacherMyAssignments />} />
-      <Route path="/createAssignment" element={<CreateAssignment />} />
-      <Route path="/seePhases" element={<SeePhasesAndGrades />} />
-    </Routes>
-  );
+  const cookies = new Cookies();
+
+  let user = cookies.get("user");
+  console.log(user);
+
+  if (user == undefined)
+    return (
+      // <Routes>
+      //     <Route path="/" element={<Login />} />
+      // </Routes>
+      <div>
+        <Login />
+      </div>
+    );
+  else if (user.role == 1) {
+    return (
+      <>
+        <MainStudent />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <MainTeacher />
+      </>
+    );
+  }
 }
 
 export default App;

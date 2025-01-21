@@ -8,13 +8,17 @@ import { Link, useLocation } from "react-router-dom";
 function Sidebar() {
   const location = useLocation();  // Obține calea URL-ului curent
 
+  const logout = async () => {
+    await window.open("http://localhost:4848/api/auth/logout", "_self");
+	};
+
   return (
     <div className="sidebar">
       <img src={logo} className="sidebar-logo" alt="Logo" />
       <ul className="sidebar-menu">
         <li>
           <Link 
-            to="/" 
+            to="/student" 
             className={`sidebar-link ${location.pathname === "/" ? "active" : ""}`}
           >
             <FontAwesomeIcon icon={faBook} className="menu-icon" /> Assignments
@@ -37,7 +41,7 @@ function Sidebar() {
           </Link>
         </li>
       </ul>
-      <button className="sidebar-logout">
+      <button className="sidebar-logout" onClick={logout}>
         <FontAwesomeIcon icon={faSignOutAlt} className="menu-icon" /> Logout
       </button>
     </div>

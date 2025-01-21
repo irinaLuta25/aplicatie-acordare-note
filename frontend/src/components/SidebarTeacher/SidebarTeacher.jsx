@@ -7,6 +7,10 @@ import { Link, useLocation } from "react-router-dom";
 
 function SidebarTeacher() {
   const location = useLocation();  // Obține calea URL-ului curent
+  const logout = async () => {
+    await window.open("http://localhost:4848/api/auth/logout", "_self");
+	};
+
 
   return (
     <div className="sidebar">
@@ -21,7 +25,7 @@ function SidebarTeacher() {
           </Link>
         </li>
       </ul>
-      <button className="sidebar-logout">
+      <button className="sidebar-logout" onClick={logout}>
         <FontAwesomeIcon icon={faSignOutAlt} className="menu-icon" /> Logout
       </button>
     </div>
