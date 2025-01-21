@@ -5,7 +5,7 @@ import { faUpload } from "@fortawesome/free-solid-svg-icons";
 
 function PhaseCardEvaluation({ phase }) {
   return (
-    <div className="phase-card">
+    <div className="phase-card-evaluation">
       <div>
         <h3>{phase.name}</h3>
         <p>{phase.description}</p>

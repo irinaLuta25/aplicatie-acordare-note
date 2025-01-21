@@ -3,10 +3,16 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import PhaseCard from "../../components/PhaseCard/PhaseCard";
 import EnrollmentPhaseCard from "../../components/EnrollmentPhaseCard/EnrollmentPhaseCard";
+import { useState } from "react";
 
 function AssignmentPhases() {
   const location = useLocation();
   const { assignment } = location.state || {};
+  const [hasFile, setHasFile]=useState(false);
+
+  const handleSubmit=()=>{
+
+  }
 
   return (
     <div className="main-assignment">
@@ -37,7 +43,9 @@ function AssignmentPhases() {
               if (firstPhaseDeadline < currentDate) {
                 let eligibleAssignments=assignment.phases.slice(1);
                 return eligibleAssignments.filter(phase=>new Date(phase.deadline)<currentDate).map((phase)=>
-                  <PhaseCard key={phase.phase_id} phase={phase}/>)
+                  <PhaseCard key={phase.phase_id} phase={phase} onFileSelect={(files)=>setHasFile(true)}/>
+              )
+            
               } else {
                 return <EnrollmentPhaseCard
                 key={assignment.assignment_id}
@@ -45,6 +53,9 @@ function AssignmentPhases() {
               />
               }
             })()}
+             {hasFile && (
+                <button className="submit-btn">Submit</button>
+              )}
           </div>
         </div>
       </div>
