@@ -1,0 +1,7 @@
+.login-container {
+    background: url("../../assets/background.png") no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  

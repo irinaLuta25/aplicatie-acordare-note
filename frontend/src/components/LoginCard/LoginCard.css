@@ -1,0 +1,50 @@
+  .login-card {
+    background: linear-gradient(180deg, rgba(134,64,163,1) 0%, rgba(217,125,255,1) 100%);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 25vw;
+    position: relative;
+    left: 8rem;
+  }
+  
+  .login-card h2 {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: relative;
+    bottom: 2rem;
+  }
+  
+  .google-button {
+    background: #ffffff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    font-weight: bold;
+    gap: 0.8rem;
+    transition: all 0.3s ease;
+  }
+  
+  .google-button img{
+    width: 2rem;
+  }
+
+  .login-image{
+    width: 15vw;
+  }
+  
+  .google-button:hover {
+    background: #ececec;
+  }
+  

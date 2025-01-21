@@ -1,0 +1,19 @@
+
+.courses {
+  display: flex;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+.section2 {
+  width: 15vw; 
+}
+
+
+.main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1.3rem;
+  width: 80%;
+}

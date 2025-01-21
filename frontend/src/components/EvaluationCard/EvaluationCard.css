@@ -1,0 +1,32 @@
+
+.evaluation-icon{
+  width: 10vw;
+}
+
+.evaluation-card{
+  display: flex;
+  flex-direction: row;
+  gap:3rem;
+  background: linear-gradient(90deg, rgba(229,213,245,1) 0%, rgba(202,122,235,0.8576680672268908) 100%);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+
+}
+
+.evaluation-details button {
+  padding: 0.8rem 2rem;
+  background-color: #8e44ad;
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  margin-top: auto;
+}
+
+.evaluation-details button:hover {
+  opacity: 0.8;
+}
+
+

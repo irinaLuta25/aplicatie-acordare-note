@@ -1,0 +1,80 @@
+.main-see-phases {
+    padding: 10rem;
+    background: radial-gradient(circle, rgba(229,213,245,1) 0%, rgba(202,122,235,1) 120%);
+    min-height: 100vh;
+    color: white;
+}
+
+.assigments-see-phases {
+    background: #8e44ad;
+    color: white;
+    margin-bottom: 5rem;
+    padding: 3rem;
+    font-size: 1.2rem;
+    border-radius: 1rem;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.phase {
+    background: #9b59b6;
+    color: white;
+    margin-bottom: 1.5rem;
+    padding: 1rem 1rem 1rem 3rem;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.phase-header {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.evaluation {
+    border-bottom: 1px solid #ddd;
+    background: rgba(255, 255, 255, 0.407);
+    color: white;
+    width: 60vw;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.evaluation-header {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.evaluation-header span {
+    color: rgb(255, 238, 0);
+}
+
+
+.evaluation-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+}
+
+.evaluation-table th, .evaluation-table td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: left;
+    color: #fff;
+}
+
+.evaluation-table th {
+    background: #8e44ad;
+    font-weight: bold;
+}
+
+.evaluation-table td{
+    background: #8d44ad91;
+
+}

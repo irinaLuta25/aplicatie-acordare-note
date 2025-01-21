@@ -1,0 +1,18 @@
+.assignments {
+  padding: 1.5rem;
+  width: 65vw;
+  margin-top: 5rem;
+  
+}
+
+.assignments h2 {
+  margin-bottom: 20px;
+}
+
+.assignment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); 
+  gap: 4rem; 
+  align-items: stretch;
+  padding-bottom: 5rem;
+}

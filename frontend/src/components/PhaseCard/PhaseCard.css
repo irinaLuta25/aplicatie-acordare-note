@@ -1,0 +1,71 @@
+.phase-card {
+    background-color: #e5d5f5;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .phase-card h3 {
+    color: #8e44ad;
+    font-size: 1.5rem;
+  }
+  
+  .phase-card p {
+    font-size: 1rem;
+  }
+  
+  .upload-section {
+    border: 2px dashed #8e44ad;
+    border-radius: 1rem;
+    padding: 1rem 12rem;
+    text-align: center;
+    margin-top: 1.5rem;
+    background-color: #f9f9f9;
+  }
+  
+  .upload-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .upload-icon {
+    font-size: 3rem;
+    opacity: 0.5;
+    margin-bottom: 0.8rem;
+  }
+  
+  .upload-box p {
+    font-size: 1rem;
+    color: #333;
+    margin: 0.8rem 0;
+  }
+  
+  .upload-box span {
+    color: #888;
+    font-size: 0.9rem;
+    margin: 5px 0;
+  }
+  
+  .browse-btn {
+    padding: 10px 20px;
+    background-color: #8e44ad;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+  
+  .browse-btn:hover {
+    background-color: #732d91;
+  }
+  
+  .file-support-text {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 10px;
+  }
+  

@@ -1,0 +1,30 @@
+.courses {
+    display: flex;
+    height: 100vh;
+    justify-content: space-between;
+  }
+  
+  .section2 {
+    width: 15vw; 
+  }
+  
+  
+  .main-teacher {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 1.3rem;
+    width: 80%;
+  }
+
+  .btn-create {
+    padding: 1rem 3rem;
+    background-color: #8e44ad;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+    margin-right: 15rem;
+  }
