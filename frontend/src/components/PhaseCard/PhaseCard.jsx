@@ -2,17 +2,33 @@ import React, { useState, useRef, useEffect } from "react";
 import "./PhaseCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
+import { calculateGrades } from "../../API/Api";
+import Cookies from "universal-cookie";
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:4848/api/";
+axios.defaults.withCredentials = true;
 
 function PhaseCard({ phase, onFileSelect }) {
+  const cookies = new Cookies();
+
+  let user = cookies.get("user");
   const [isDragging, setIsDragging] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState([]);
   const fileInputRef = useRef(null);
   const [isInDeadline, setIsInDeadline] = useState(true)
+  const [grade, setGrade] = useState();
 
   useEffect(() => {
     if (new Date(phase.deadline) < new Date()) {
       setIsInDeadline(false);
     }
+  })
+
+  useEffect(() => {
+    calculateGrades(phase.id,user.id)
+      .then(gr=>setGrade(gr))
+      .catch((err) => console.error(err))
   })
 
   const handleFiles = (files) => {
@@ -101,13 +117,13 @@ function PhaseCard({ phase, onFileSelect }) {
               </ul>
             </div>
           )}
-      
+
         </div>
-      
-      ):(
-        <p>Received grade:10</p>
+
+      ) : (
+        <p>Received grade: {grade}</p>
       )}
-      
+
     </div>
   );
 }

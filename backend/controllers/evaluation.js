@@ -88,7 +88,7 @@ const controller = {
     
         try {
             const students = await EvaluationDb.findAndCountAll({
-                where: { phaseId },
+                where: { phaseId,role:"student" },
                 include: [{
                     association: 'user',
                     required: true,
@@ -123,7 +123,28 @@ const controller = {
             res.status(500).send(err)
         }
     },
-   
+
+    getJuryStatusByPhaseId: async (req, res) => {
+        const { phaseId } = req.params;
+
+        if (!phaseId) {
+            return res.status(400).send("No phase ID provided.");
+        }
+
+        try {
+            const juryCount = await EvaluationDb.count({
+                where: { phaseId, role: "JURY" }
+            });
+
+            if (juryCount > 0) {
+                res.status(200).send({ juryCreated: true });
+            } else {
+                res.status(200).send({ juryCreated: false });
+            }
+        } catch (err) {
+            res.status(500).send(err);
+        }
+    }
 
 };
 

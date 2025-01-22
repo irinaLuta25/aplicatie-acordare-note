@@ -14,7 +14,7 @@ function MainTeacher() {
         <Routes>
           <Route path="/teacherMyAssignments" element={<TeacherMyAssignments />} />
           <Route path="/createAssignment" element={<CreateAssignment />} />
-          <Route path="/seePhases" element={<SeePhasesAndGrades />} />
+          <Route path="/seePhases/:id" element={<SeePhasesAndGrades />} />
         </Routes>
       );
 }

@@ -3,11 +3,11 @@ import "./PhaseEvaluation.css"
 import { useLocation } from "react-router-dom";
 import PhaseCardEvaluation from "../../components/PhaseCardEvaluation/PhaseCardEvaluation";
 
-
-function PhaseEvaluation(){
-    const location = useLocation();
-    const { evaluation } = location.state || {};
-
+function PhaseEvaluation() {
+ 
+  const location = useLocation();
+  const { evaluation } = location.state || {};
+ 
   return (
     <div className="main-assignment">
       <div className="back-button-container">
@@ -26,12 +26,12 @@ function PhaseEvaluation(){
             <strong>Description: </strong>
             {evaluation.description}
           </p>
-
+          
           <h2>Phases</h2>
           <div className="phase-list">
-                {evaluation.phases.map((phase)=>(
-                <PhaseCardEvaluation key={phase.phase_id} phase={phase}/>)
-                )}
+            {evaluation.phases.map((phase) => (
+              <PhaseCardEvaluation key={phase.phase_id} phase={phase} />)
+            )}
 
           </div>
         </div>

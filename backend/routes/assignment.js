@@ -5,7 +5,7 @@ const router = express.Router();
 const assignmentController = require("../controllers").assignmentController;
 const auth=require("../middlewares/index");
 
-router.get('/getAllEvaluationsByAssignments',auth.isAuthenticated,assignmentController.getAllEvaluationsByAssignments);
+router.get('/getAllEvaluationsByAssignmentsByUserId/:id',auth.isAuthenticated,assignmentController.getAllEvaluationsByAssignmentsByUserId);
 router.get('/getAllAssignmentsByPhases',auth.isAuthenticated,assignmentController.getAllAssignmentsByPhases);
 router.get('/getAllAssignmentsByUserId/:id',auth.isAuthenticated,assignmentController.getAllAssignmentsByUserId);
 router.get('/getAll',auth.isAuthenticated,assignmentController.getAll);

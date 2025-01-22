@@ -1,5 +1,6 @@
 const TeamDb = require("../models").Team;
-const EvaluationDb=require("../models").Evaluation;
+const EvaluationDb = require("../models").Evaluation;
+const UserDb = require("../models").User;
 
 const controller = {
   addTeam: async (req, res) => {
@@ -16,7 +17,7 @@ const controller = {
     }
   },
 
-  getAll: async (req,res) => {
+  getAll: async (req, res) => {
     try {
       const teams = await TeamDb.findAll();
       res.status(200).send(teams);
@@ -67,28 +68,81 @@ const controller = {
       res.status(500).send(err.message);
     }
   },
-  
-  getAllTeamsByPhaseId: async (req,res) => {
+
+  getAllTeamsByPhaseId: async (req, res) => {
     const phaseIdT = req.params.phaseId;
 
     if (!phaseIdT) {
-        throw new Error("No phase ID provided.");
+      throw new Error("No phase ID provided.");
     }
 
     try {
-        const teams = await TeamDb.findAll({
-            include: [{
-                model: EvaluationDb, 
-                required: true,
-                where: { phaseId:phaseIdT }
-            }],
-        });
-        res.status(200).send(teams);
-        return teams;
+      const teams = await TeamDb.findAll({
+        include: [{
+          model: EvaluationDb,
+          required: true,
+          where: { phaseId: phaseIdT }
+        }],
+      });
+      res.status(200).send(teams);
+      return teams;
     } catch (err) {
-        res.status(500).send(err);
+      res.status(500).send(err);
     }
-},
+  },
+
+  getAllTeamsByPhaseIdByUser: async (req, res) => {
+    const phaseIdT = req.params.phaseId;
+
+    if (!phaseIdT) {
+      throw new Error("No phase ID provided.");
+    }
+
+    try {
+      const teams = await TeamDb.findAll({
+        include: [{
+          model: EvaluationDb,
+          required: true,
+          where: { phaseId: phaseIdT },
+          include: [{
+            model: UserDb,
+            required: true,
+          }]
+        }],
+      });
+      res.status(200).send(teams);
+      return teams;
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  },
+
+  getTeamStatus: async (req, res) => {
+    const phaseIdT = req.params.id;
+
+    if (!phaseIdT) {
+      return res.status(400).json({ error: "No phase ID provided." });
+    }
+
+    try {
+      const teamsCount = await TeamDb.count({
+        include: [
+          {
+            model: EvaluationDb,
+            required: true,
+            where: { phaseId: phaseIdT },
+          },
+        ],
+      });
+
+      const teamsCreated = teamsCount > 0;
+
+      return res.status(200).json({ teamsCreated });
+    } catch (err) {
+      console.error("Eroare la verificarea stării echipelor:", err);
+      return res.status(500).json({ error: "Eroare la server." });
+    }
+  }
 };
 
-module.exports=controller;
+module.exports = controller;

@@ -76,7 +76,8 @@ const controller = {
 
         }
     },
-    getAllEvaluationsByAssignments: async (req, res) => {
+    getAllEvaluationsByAssignmentsByUserId: async (req, res) => {
+        const id=req.params.id;
         try {
             const assignments = await AssignmentDb.findAll({
                 include: [{
@@ -85,7 +86,10 @@ const controller = {
                     include: [{
                         model: EvaluationDB,
                         required: true,
-                        where: { role: "JURY" },
+                        where: { 
+                            role: "JURY",
+                            userId:id,
+                         },
                         include: [{
                             model: UserDB,
                             required: true,
@@ -104,6 +108,8 @@ const controller = {
 
         }
     },
+
+
 
     getAllAssignmentsByPhases: async (req, res) => {
         try {
@@ -141,7 +147,8 @@ const controller = {
         } catch (err) {
             res.status(500).send(err.message);
         }
-    }
+    },
+    
 };
 
 module.exports = controller;
