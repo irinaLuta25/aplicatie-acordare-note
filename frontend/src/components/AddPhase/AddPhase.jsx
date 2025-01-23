@@ -5,32 +5,29 @@ function AddPhase({ id, onValidationChange, sendDataToCreateAssignment }) {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [deadline, setDeadline] = useState("");
-    const [isValid,setIsValid]=useState(false);
+    const [isValid, setIsValid] = useState(false);
 
     const isFormValidForPhases = () => {
         return name.trim() !== "" &&
-               deadline.trim() !== "" &&
-               description.trim() !== ""
+            deadline.trim() !== "" &&
+            description.trim() !== ""
     };
 
-    useEffect(() => {
+    const handleSave=()=> {
         const valid = isFormValidForPhases();
         setIsValid(valid);
         onValidationChange(id, valid);
 
         if (valid) {
-            const debounceTimer = setTimeout(() => {
                 const newPhase = {
                     name,
                     deadline,
                     description,
                 };
                 sendDataToCreateAssignment(newPhase);
-            }, 300);
-
-            return () => clearTimeout(debounceTimer);
+            };
+        
         }
-    }, [name, deadline, description]); 
 
 
     return (
@@ -65,6 +62,12 @@ function AddPhase({ id, onValidationChange, sendDataToCreateAssignment }) {
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </span>
+                <button
+                    className="back-button"
+                    onClick={handleSave}
+                >
+                    Save
+                </button>
             </div>
         </div>
     );
