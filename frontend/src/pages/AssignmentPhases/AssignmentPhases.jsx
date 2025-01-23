@@ -90,19 +90,20 @@ function AssignmentPhases() {
     if (assignment?.phases.length > 0 && !juryCreated && !isJuryChecked.current) {
       isJuryChecked.current = true;
 
-      const lastPhase = assignment.phases[assignment.phases.length - 1];
-      const lastPhaseDeadline = new Date(lastPhase.deadline);
-      const currentDate = new Date();
-      console.log("LAST PAHSE FUTUI MORTIIIII" + lastPhaseDeadline + "\nCURENT DATE" + currentDate);
-      if (currentDate >= lastPhaseDeadline)  {
-      console.log("DECEEEEEEEEEEE")
+      let targetId = 0
+      for(let phase of assignment.phases) {
+        if(new Date(phase.deadline).getDate()==new Date().getDate()&&new Date(phase.deadline).getFullYear()==new Date().getFullYear()&&new Date(phase.deadline).getMonth()==new Date().getMonth()){
+          targetId = phase.id
+        }
+      }      
+
       const checkAndCreateJury = async () => {
         try {
-          const res = await getJuryStatusByPhaseId(lastPhase.id);
+          const res = await getJuryStatusByPhaseId(targetId);
 
           if (res.status === 200 && res.data.juryCreated === false) {
             console.log("Generare juriu în progres...");
-            await createEvaluationJury(lastPhase.id);
+            await createEvaluationJury(targetId);
 
             setJuryCreated(true);
             console.log("Juriul a fost creat cu succes!");
@@ -117,9 +118,10 @@ function AssignmentPhases() {
       }};
 
       checkAndCreateJury();
-    }
+    
   }
   }, [assignment, juryCreated]);
+
 
   const handleUpload = async () => {
     if (filesToUpload.length === 0) {
@@ -202,16 +204,50 @@ return (
 
             if (firstPhaseDeadline < currentDate) {
               let eligibleAssignments = assignment.phases.slice(1);
-              return eligibleAssignments.map((currentPhase) => (
-                <PhaseCard
-                  key={currentPhase.id}
-                  phase={currentPhase}
-                  onFileSelect={(files) => {
-                    setFilesToUpload((prev) => [...prev, ...files]);
-                    setHasFile(true); 
-                  }}
-                />
-              ));
+              return eligibleAssignments.reduce((visiblePhases, currentPhase, index, phases) => {
+                const currentDate = new Date();
+
+                const isEligible =
+                  index === 0 ||
+                  new Date(phases[index - 1].deadline) <= currentDate;
+
+                if (isEligible) {
+                  visiblePhases.push(
+                    <PhaseCard
+                      key={currentPhase.phase_id}
+                      phase={currentPhase}
+                      onFileSelect={(files) => {
+                        setFilesToUpload((prev) => [...prev, ...files]);
+                        setHasFile(true); }}
+                    />
+                  );
+                }
+
+                return visiblePhases; 
+              }, []);
+              /*return eligibleAssignments.reduce((visiblePhases, currentPhase, index, phases) => {
+                  const currentDate = new Date();
+
+                  const isEligible =
+                    index === 0 ||
+                    new Date(phases[index - 1].deadline) <= currentDate;
+
+
+                  if (isEligible) {
+                    visiblePhases.push(
+                      <PhaseCard
+                        key={currentPhase.phase_id}
+                        phase={currentPhase}
+                        onFileSelect={(files) => {
+                          setFilesToUpload((prev) => [...prev, ...files]);
+                          setHasFile(true); 
+                      />
+                    );
+                  }
+
+                  return visiblePhases; 
+                }, []);
+x*/ 
             } else {
               return <EnrollmentPhaseCard key={assignment.id} assignment={assignment} />;
             }
