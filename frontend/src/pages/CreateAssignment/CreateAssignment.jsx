@@ -58,12 +58,15 @@ function CreateAssignment() {
     };
 
     const handleDataFromAddPhase = (data) => {
-        let newPhase = {
-            name: data.name,
-            deadline: data.deadline,
-            description: data.description,
-        }
-        setPhases([...phases, newPhase])
+        setPhases((prevPhases) => [
+            ...prevPhases,
+            {
+                name: data.name,
+                deadline: data.deadline,
+                description: data.description,
+            },
+        ]);
+        console.log(phases)
     }
 
     const handleSubmit = () => {

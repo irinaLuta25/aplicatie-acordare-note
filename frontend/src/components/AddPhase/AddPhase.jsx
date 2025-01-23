@@ -5,6 +5,7 @@ function AddPhase({ id, onValidationChange, sendDataToCreateAssignment }) {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [deadline, setDeadline] = useState("");
+    const [isValid,setIsValid]=useState(false);
 
     const isFormValidForPhases = () => {
         return name.trim() !== "" &&
@@ -13,18 +14,23 @@ function AddPhase({ id, onValidationChange, sendDataToCreateAssignment }) {
     };
 
     useEffect(() => {
-        const newPhase={
-            name,
-            deadline,
-            description,
-        }
-        let isValid=isFormValidForPhases();
-        onValidationChange(id,isValid);
-        if(isValid){
-            sendDataToCreateAssignment(newPhase);
-        }
+        const valid = isFormValidForPhases();
+        setIsValid(valid);
+        onValidationChange(id, valid);
 
-    }, [name, deadline, description]);
+        if (valid) {
+            const debounceTimer = setTimeout(() => {
+                const newPhase = {
+                    name,
+                    deadline,
+                    description,
+                };
+                sendDataToCreateAssignment(newPhase);
+            }, 300);
+
+            return () => clearTimeout(debounceTimer);
+        }
+    }, [name, deadline, description]); 
 
 
     return (
